@@ -36,7 +36,7 @@ Each gesture was performed at two elbow angles:
 - 30°
 - 60°
 
-This resulted in eight gesture-angle combinations.
+This resulted in a total of eight gesture-angle combinations.
 
 Each condition was repeated 30 times.
 
@@ -49,7 +49,7 @@ A five-channel sEMG system (IX-BIO8, iWorx) was used for data acquisition.
 - Electrode type: Disposable Ag/AgCl electrodes
 - Electrode configuration: Bipolar
 
-The recording channels correspond to the following muscles:
+The five recording channels correspond to the following muscles:
 
 | Channel | Muscle |
 |---|---|
@@ -65,11 +65,11 @@ The ground electrode was placed near the radial styloid process.
 
 Participants followed a metronome set at 60 beats/min.
 
-Each trial consisted of:
+Each trial lasted 5 seconds:
 
-- 2 s rest
-- 1 s motion execution
-- 2 s rest
+- 2 s: Rest
+- 1 s: Motion execution
+- 2 s: Rest
 
 Each gesture-angle condition was repeated 30 times.
 
@@ -79,7 +79,7 @@ Each CSV file follows the naming convention:
 
 `[participant]_[elbow angle] [gesture].csv`
 
-Example:
+For example:
 
 `a_30 fist.csv`
 
@@ -98,7 +98,7 @@ indicates:
 | `pro` | Wrist pronation |
 | `extor` | Wrist supination |
 
-### Example Files
+### Example File Structure
 
 ```text
 a_30 extor.csv
@@ -119,4 +119,82 @@ b_60 fist.csv
 b_60 open.csv
 b_60 pro.csv
 
+c_30 extor.csv
 ...
+```
+
+Each participant has eight CSV files corresponding to four hand gestures performed at two elbow angles.
+
+## CSV Data Format
+
+Each CSV file contains eight columns:
+
+| Column | Description |
+|---|---|
+| `bandpass 1` | Band-pass filtered sEMG signal from Channel 1 |
+| `bandpass 2` | Band-pass filtered sEMG signal from Channel 2 |
+| `bandpass 3` | Band-pass filtered sEMG signal from Channel 3 |
+| `bandpass 4` | Band-pass filtered sEMG signal from Channel 4 |
+| `bandpass 5` | Band-pass filtered sEMG signal from Channel 5 |
+| `time` | Time information in seconds |
+| `onset` | Onset information |
+| `mark` | Trial/event marker |
+
+The sampling interval of the `time` column is 0.001 s, corresponding to a sampling frequency of 1,000 Hz.
+
+## Signal Processing
+
+The sEMG signals were preprocessed using:
+
+- 60 Hz notch filter
+- 20–450 Hz fourth-order Butterworth band-pass filter
+
+For the analysis reported in the associated paper, the filtered signals were segmented into 2-second (2,000-sample) segments.
+
+Feature extraction was performed using:
+
+- Window size: 200 ms (200 samples)
+- Overlap: 50%
+- Step size: 100 ms (100 samples)
+
+## Extracted Features
+
+Five time-domain features were extracted from each sEMG channel:
+
+1. Root Mean Square (RMS)
+2. Mean Absolute Value (MAV)
+3. Waveform Length (WL)
+4. Zero Crossings (ZC)
+5. Slope Sign Changes (SSC)
+
+Since five features were extracted from five sEMG channels, each analysis window produced a 25-dimensional feature vector.
+
+## Machine Learning Models
+
+The following machine learning models were evaluated in the associated study:
+
+- Random Forest (RF)
+- Support Vector Machine (SVM)
+- Extreme Gradient Boosting (XGBoost)
+
+Please refer to the associated publication for detailed information regarding signal processing, feature extraction, model configuration, validation procedures, and experimental results.
+
+## Citation
+
+If you use this dataset in your research, please cite:
+
+Lee, S., Kim, J., & Choi, S. (2026).  
+**Simultaneous classification of hand gestures and elbow angles using sEMG signals: a comparison of machine learning performances.**  
+*Biomedical Engineering Letters*.
+
+DOI: 10.1007/s13534-026-00607-7
+
+## Data Availability
+
+The dataset in this repository is provided for research purposes.
+
+Please cite the associated publication when using this dataset in academic work.
+
+## Contact
+
+For questions regarding the dataset or the associated study, please contact the corresponding author.
