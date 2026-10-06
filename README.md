@@ -2,7 +2,7 @@
 
 This repository contains the surface electromyography (sEMG) dataset used in the study:
 
-**"Simultaneous classification of hand gestures and elbow angles using sEMG signals: a comparison of machine learning performances"**
+**"Simultaneous Classification of Hand Gestures and Elbow Angles Using sEMG Signals: A Comparison of Machine Learning Performances"**
 
 Published in *Biomedical Engineering Letters* (2026).
 
@@ -20,7 +20,7 @@ sEMG signals were collected from eight healthy participants while performing fou
 - Mean age: 23 ± 2 years
 - All participants were right-handed.
 
-For data anonymization, participants are represented using alphabetical identifiers (e.g., `a`, `b`, `c`, ...).
+For data anonymization, participants are represented using alphabetical identifiers (`a`–`h`).
 
 ## Experimental Conditions
 
@@ -73,21 +73,56 @@ Each trial lasted 5 seconds:
 
 Each gesture-angle condition was repeated 30 times.
 
+## Repository Structure
+
+```text
+sEMG-Hand-Gesture-Elbow-Angle-Dataset/
+├── README.md
+├── .gitignore
+└── data/
+    ├── a_30 extor.csv
+    ├── a_30 fist.csv
+    ├── a_30 open.csv
+    ├── a_30 pro.csv
+    ├── a_60 extor.csv
+    ├── a_60 fist.csv
+    ├── a_60 open.csv
+    ├── a_60 pro.csv
+    ├── b_30 extor.csv
+    ├── b_30 fist.csv
+    ├── ...
+    └── h_60 pro.csv
+```
+
+The `data/` directory contains the sEMG data for all eight participants.
+
+Each participant has eight CSV files corresponding to four hand gestures performed at two elbow angles.
+
 ## File Naming Convention
 
 Each CSV file follows the naming convention:
 
-`[participant]_[elbow angle] [gesture].csv`
+```text
+[participant]_[elbow angle] [gesture].csv
+```
 
 For example:
 
-`a_30 fist.csv`
+```text
+a_30 fist.csv
+```
 
 indicates:
 
 - `a`: Participant identifier
 - `30`: Elbow angle of 30°
 - `fist`: Fist gesture
+
+### Participant Labels
+
+| File label | Participant |
+|---|---|
+| `a`–`h` | Anonymized participant identifier |
 
 ### Gesture Labels
 
@@ -98,32 +133,12 @@ indicates:
 | `pro` | Wrist pronation |
 | `extor` | Wrist supination |
 
-### Example File Structure
+### Elbow Angle Labels
 
-```text
-a_30 extor.csv
-a_30 fist.csv
-a_30 open.csv
-a_30 pro.csv
-a_60 extor.csv
-a_60 fist.csv
-a_60 open.csv
-a_60 pro.csv
-
-b_30 extor.csv
-b_30 fist.csv
-b_30 open.csv
-b_30 pro.csv
-b_60 extor.csv
-b_60 fist.csv
-b_60 open.csv
-b_60 pro.csv
-
-c_30 extor.csv
-...
-```
-
-Each participant has eight CSV files corresponding to four hand gestures performed at two elbow angles.
+| File label | Elbow angle |
+|---|---:|
+| `30` | 30° |
+| `60` | 60° |
 
 ## CSV Data Format
 
@@ -136,7 +151,7 @@ Each CSV file contains eight columns:
 | `bandpass 3` | Band-pass filtered sEMG signal from Channel 3 |
 | `bandpass 4` | Band-pass filtered sEMG signal from Channel 4 |
 | `bandpass 5` | Band-pass filtered sEMG signal from Channel 5 |
-| `time` | Time information in seconds |
+| `time` | Time in seconds |
 | `onset` | Onset information |
 | `mark` | Trial/event marker |
 
@@ -179,21 +194,21 @@ The following machine learning models were evaluated in the associated study:
 
 Please refer to the associated publication for detailed information regarding signal processing, feature extraction, model configuration, validation procedures, and experimental results.
 
-## Citation
-
-If you use this dataset in your research, please cite:
-
-Lee, S., Kim, J., & Choi, S. (2026).  
-**Simultaneous classification of hand gestures and elbow angles using sEMG signals: a comparison of machine learning performances.**  
-*Biomedical Engineering Letters*.
-
-DOI: 10.1007/s13534-026-00607-7
-
 ## Data Availability
 
-The dataset in this repository is provided for research purposes.
+The sEMG dataset associated with this study is publicly available in this GitHub repository.
 
-Please cite the associated publication when using this dataset in academic work.
+The dataset is provided for research purposes. When using this dataset in academic work, please cite the associated publication.
+
+## Citation
+
+If you use this dataset in your research, please cite the associated publication:
+
+**[Authors]. (2026).**  
+**Simultaneous Classification of Hand Gestures and Elbow Angles Using sEMG Signals: A Comparison of Machine Learning Performances.**  
+*Biomedical Engineering Letters.*
+
+**DOI:** 10.1007/s13534-026-00607-7
 
 ## Contact
 
